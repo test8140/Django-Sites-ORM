@@ -8,5 +8,5 @@ urlpatterns = [
         #extra_context={'title': 'Какойто тайтл'}
     ), name='category'),
     path('news/<int:pk>/', ViewNews.as_view(), name='view_views'),
-    path('news/add-news/', add_news, name='add_news'),
+    path('news/add-news/', CreateNews.as_view(), name='add_news'),
 ]
