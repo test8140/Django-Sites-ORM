@@ -5,9 +5,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.core.mail import send_mail
 
 from .models import News, Category
-from .forms import NewsForm, UserLoginForm, UserRegisterForm
+from .forms import NewsForm, UserLoginForm, UserRegisterForm, ContactForm
 from .utils import MyMixin
 
 
@@ -44,12 +45,22 @@ def user_logout(request):
     return redirect('login')
 
 
-#def test(request):
-    #objects = ['kelli1', 'sara2', 'billi3', 'gari4', 'djon5', 'maikl6', 'genri7']
-    #paginator = Paginator(objects, 2)
-    #page_num = request.GET.get('page', 1)
-    #page_objects = paginator.get_page(page_num)
-    #return render(request, 'news/test.html', {'page_obj': page_objects})
+def test(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 
+                     'test8140@ukr.net',  ['mitucha1983@gmail.com'], fail_silently=False)
+            if mail:
+                    messages.success(request, 'Письмо отправлено!')
+                    return redirect('test')
+            else:
+                messages.success(request, 'Ошибка отправки!')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = ContactForm()
+    return render(request, 'news/test.html', {'form': form})
  
 
 class HomeNews(MyMixin, ListView):

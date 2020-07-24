@@ -136,6 +136,14 @@ MEDIA_URL = '/media/'
 
 INTERNAL_IPS = ['127.0.0.1']
 
+EMAIL_HOST = 'sntp.ukr.net'
+EMAIL_PORT = 465 #2525
+EMAIL_HOST_USER = 'test8140@ukr.net'
+EMAIL_HOST_PASSWORD = 'pizdec19721983'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
