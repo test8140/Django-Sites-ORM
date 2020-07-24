@@ -8,6 +8,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">Главная</a></li>
+          <a class="nav-link" href="{% url 'contact' %}">Контакты</a></li>
           {% if request.user.is_authenticated %}
               <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a></li>
           {% endif %}
